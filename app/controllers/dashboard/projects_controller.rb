@@ -14,7 +14,7 @@ class Dashboard::ProjectsController < DashboardController
 
   # GET /dashboard/projects/new
   def new
-    @dashboard_project = Dashboard::Project.new
+    @dashboard_project = Project.new
   end
 
   # GET /dashboard/projects/1/edit
@@ -24,11 +24,11 @@ class Dashboard::ProjectsController < DashboardController
   # POST /dashboard/projects
   # POST /dashboard/projects.json
   def create
-    @dashboard_project = Dashboard::Project.new(dashboard_project_params)
+    @dashboard_project = current_user.build_project(dashboard_project_params)
 
     respond_to do |format|
       if @dashboard_project.save
-        format.html { redirect_to @dashboard_project, notice: 'Project was successfully created.' }
+        format.html { redirect_to dashboard_project_path(@dashboard_project), notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @dashboard_project }
       else
         format.html { render :new }
@@ -64,11 +64,11 @@ class Dashboard::ProjectsController < DashboardController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dashboard_project
-      @dashboard_project = Dashboard::Project.find(params[:id])
+      @dashboard_project = Project.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dashboard_project_params
-      params[:dashboard_project]
+      params.require(:project).permit(:title, :description, :start_date, :budget)
     end
 end
