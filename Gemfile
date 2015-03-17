@@ -55,5 +55,7 @@ group :development, :test do
 
   # Rspec for testing
   gem 'rspec-rails', '~> 3.0'
+  gem 'annotate'
+  gem 'better_errors'
 end
 
