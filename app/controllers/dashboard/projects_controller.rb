@@ -1,4 +1,4 @@
-class Dashboard::ProjectsController < ApplicationController
+class Dashboard::ProjectsController < DashboardController
   before_action :set_dashboard_project, only: [:show, :edit, :update, :destroy]
 
   # GET /dashboard/projects
