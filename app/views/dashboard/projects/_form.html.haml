@@ -1,0 +1,10 @@
+= form_for @dashboard_project do |f|
+  - if @dashboard_project.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@dashboard_project.errors.count, "error")} prohibited this dashboard_project from being saved:"
+      %ul
+        - @dashboard_project.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,19 @@
+%h1 Listing dashboard_projects
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @dashboard_projects.each do |dashboard_project|
+      %tr
+        %td= link_to 'Show', dashboard_project_path(dashboard_project)
+        %td= link_to 'Edit', edit_dashboard_project_path(dashboard_project)
+        %td= link_to 'Destroy', dashboard_project_path(dashboard_project), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Project', new_dashboard_project_path

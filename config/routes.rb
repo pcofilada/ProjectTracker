@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
+  namespace :dashboard do
+    resources :projects
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
